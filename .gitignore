@@ -1,0 +1,20 @@
+# Системные файлы
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Временные файлы
+*~
+*.old
+*.orig
+
+# Конфиденциальное
+*password*
+*secret*
+.env
+
+# Логи PostgreSQL
+/var/log/postgresql/

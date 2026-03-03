@@ -1,0 +1,10 @@
+services:
+  nocodb:
+    image: nocodb/nocodb:latest
+    container_name: nocodb
+    restart: unless-stopped
+    network_mode: "host"
+    environment:
+      NC_DB: "pg://localhost:5432?u=postgres&p=admin&d=appstoreDB"
+      NC_AUTH_JWT_SECRET: "my-super-secret-jwt-key-2026"
+      NC_PUBLIC_URL: "https://192.168.110.133:8080"
