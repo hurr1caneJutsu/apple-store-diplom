@@ -1,7 +1,7 @@
 
-**🍎 APPLE STORE DATABASE SYSTEM**
+# **🍎 APPLE STORE DATABASE SYSTEM**
 
-Дипломный проект: База данных магазина электроники
+# Дипломный проект: База данных магазина электроники
 ---
 
 Версия: 1.0
@@ -9,13 +9,13 @@
 Автор: Maxim Belous
 
 ---
-1. ОПИСАНИЕ ПРОЕКТА
+# 1. ОПИСАНИЕ ПРОЕКТА
 ---
 
 Полноценная система управления базой данных для магазина электроники Apple.
 Разработана на виртуальной машине VMware Workstation с Ubuntu 24.04.4 LTS.
 
-КЛЮЧЕВЫЕ ВОЗМОЖНОСТИ:
+## КЛЮЧЕВЫЕ ВОЗМОЖНОСТИ:
 ----------------------
 ✅ PostgreSQL 17.9 с нормализованной структурой данных
 
@@ -31,18 +31,24 @@
 
 
 ---
-2. ТЕХНОЛОГИЧЕСКИЙ СТЕК
+# 2. ТЕХНОЛОГИЧЕСКИЙ СТЕК
 ---
 
 VMware Workstation Pro 25H2
+
 Ubuntu 24.04.4 LTS
+
 PostgreSQL 17.9
+
 PgAdmin4 9.12
+
 Docker 29.2.1 и Docker Compose v5.1.0
+
 Контейнер NocoDB
 
+
 ---
-3. СТРУКТУРА БАЗЫ ДАННЫХ
+# 3. СТРУКТУРА БАЗЫ ДАННЫХ
 ---
 
 СПРАВОЧНЫЕ ТАБЛИЦЫ:
@@ -61,7 +67,7 @@ Docker 29.2.1 и Docker Compose v5.1.0
 - returns (возвраты)
 
 ---
-4. РОЛЕВАЯ МОДЕЛЬ
+# 4. РОЛЕВАЯ МОДЕЛЬ
 ---
 
 Суперпользователь - Полный доступ
@@ -74,7 +80,7 @@ Docker 29.2.1 и Docker Compose v5.1.0
 - Защита от брутфорса: задержка 3 секунды при неверном пароле
 
 ---
-5. ТРИГГЕРЫ АВТОМАТИЗАЦИИ
+# 5. ТРИГГЕРЫ АВТОМАТИЗАЦИИ
 ---
 
 1️⃣ update_order_total
@@ -96,52 +102,52 @@ Docker 29.2.1 и Docker Compose v5.1.0
    → Контроль суммы возврата
 
 ---
-6. УСТАНОВКА И ЗАПУСК
+# 6. УСТАНОВКА И ЗАПУСК
 ---
 
-ШАГ 1. Установка PostgreSQL и pgAdmin
+## ШАГ 1. Установка PostgreSQL и pgAdmin
 --------------------------------------
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y curl ca-certificates
 
-# Добавление репозитория PostgreSQL
+### Добавление репозитория PostgreSQL
 sudo install -d /usr/share/postgresql-common/pgdg
 sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
 
-# Установка PostgreSQL 17.9
+### Установка PostgreSQL 17.9
 sudo apt install -y postgresql-17 postgresql-client-17
 
-# Установка pgAdmin4
+### Установка pgAdmin4
 curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
 sudo apt update
 sudo apt install -y pgadmin4-desktop
 
 
-ШАГ 2. Создание структуры БД
+## ШАГ 2. Создание структуры БД
 -----------------------------
 sudo -u postgres psql -f sql/apple_store_db_v3.sql
 sudo -u postgres psql -f docs/Роли\ для\ БД.sql
 
 
-ШАГ 3. Настройка конфигов
+## ШАГ 3. Настройка конфигов
 --------------------------
-# Раскомментировать в postgresql.conf:
+### Раскомментировать в postgresql.conf:
 listen_addresses = '*'
 
-# Добавить в pg_hba.conf:
+### Добавить в pg_hba.conf:
 host    all    all    192.168.0.0/24    scram-sha-256
 
 sudo systemctl restart postgresql
 
 
-ШАГ 4. Запуск NocoDB
+## ШАГ 4. Запуск NocoDB
 ---------------------
 cd configs
 docker compose up -d
 # Открыть в браузере: http://localhost:8080
 
 ---
-7. КОНФИГУРАЦИОННЫЕ ФАЙЛЫ
+# 7. КОНФИГУРАЦИОННЫЕ ФАЙЛЫ
 ---
 
 📁 configs/
@@ -157,7 +163,7 @@ docker compose up -d
 └── Роли для БД.sql              # Скрипт создания ролей
 
 ---
-8. ТЕСТОВЫЕ ДАННЫЕ
+# 8. ТЕСТОВЫЕ ДАННЫЕ
 ---
 
 Для наполнения базы тестовыми данными используйте:
@@ -176,7 +182,7 @@ INSERT INTO storages (capacity) VALUES
     ('128 ГБ'), ('256 ГБ'), ('512 ГБ'), ('1024 ГБ');
 
 ---
-9. БЕЗОПАСНОСТЬ
+# 9. БЕЗОПАСНОСТЬ
 ---
 
 ✅ Защита от брутфорса через auth_delay (3 сек)
@@ -186,7 +192,7 @@ INSERT INTO storages (capacity) VALUES
 ✅ Внешние ключи с ON DELETE RESTRICT
 
 ---
-10. РЕЗЕРВНОЕ КОПИРОВАНИЕ
+# 10. РЕЗЕРВНОЕ КОПИРОВАНИЕ
 ---
 
 Автоматический дамп через cron:
@@ -199,7 +205,7 @@ INSERT INTO storages (capacity) VALUES
 - Хранятся на отдельном диске или в облаке
 
 ---
-11. СИСТЕМНЫЕ ТРЕБОВАНИЯ
+# 11. СИСТЕМНЫЕ ТРЕБОВАНИЯ
 ---
 
 | Процессор             │ 2 ядра 
@@ -209,7 +215,7 @@ INSERT INTO storages (capacity) VALUES
 │ Гостевая ОС           │ Ubuntu 24.04 LTS 
 
 ---
-12. ПЛАНЫ ПО РАЗВИТИЮ
+# 12. ПЛАНЫ ПО РАЗВИТИЮ
 ---
 
 🔹 Внедрение репликации для отказоустойчивости
@@ -218,7 +224,7 @@ INSERT INTO storages (capacity) VALUES
 🔹 Разработка мобильного приложения для менеджеров
 
 ---
-13. КОНТАКТЫ
+# 13. КОНТАКТЫ
 ---
 
 Автор: Belous Maxim
